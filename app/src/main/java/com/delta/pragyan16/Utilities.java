@@ -27,6 +27,7 @@ public class Utilities {
     public static String url_auth = "";//"https://api.festember.com/user/auth";
 
     public static String url_reg = "https://api.pragyan.org/user/register";
+    public static String url_qr = "http://api.pragyan.org/tshirt/qrcode";
 
 
     public static void init_colors()

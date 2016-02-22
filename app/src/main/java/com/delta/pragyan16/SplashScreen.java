@@ -310,13 +310,10 @@ public class SplashScreen extends Activity {
                         EventInfo eventInfo = new EventInfo();
                         eventInfo.name = tempjsonObject.getString("event_name");
                         eventInfo.id = tempjsonObject.getInt("event_id");
-                        eventInfo.cluster = tempjsonObject.getString("event_cluster");
+                        eventInfo.cluster = tempjsonObject.getString("event_cluster").toUpperCase();
                         eventInfo.start_time = tempjsonObject.getString("event_start_time");
                         eventInfo.end_time = tempjsonObject.getString("event_end_time");
                         eventInfo.last_update_time = tempjsonObject.getString("event_last_update_time");
-                        eventInfo.maxlimit = tempjsonObject.getInt("event_max_limit");
-                        eventInfo.locx = tempjsonObject.getString("event_loc_x");
-                        eventInfo.locy = tempjsonObject.getString("event_loc_y");
                         eventInfo.venue = tempjsonObject.getString("event_venue");
                         eventInfo.date = tempjsonObject.getString("event_date");
                         eventInfo.description = tempdescObject.getString("event_desc");
