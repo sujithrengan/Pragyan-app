@@ -24,7 +24,9 @@ public class Utilities {
     public static String pragyan_mail;
     public static String pragyan_pass;
 
-    public static String url_auth = "https://api.festember.com/user/auth";
+    public static String url_auth = "";//"https://api.festember.com/user/auth";
+
+    public static String url_reg = "https://api.pragyan.org/user/register";
 
 
     public static void init_colors()

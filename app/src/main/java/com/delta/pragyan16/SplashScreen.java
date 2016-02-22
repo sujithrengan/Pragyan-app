@@ -116,7 +116,6 @@ public class SplashScreen extends Activity {
                                             public void run() {
                                                 Utilities.sp = getSharedPreferences("llep", 0);
                                                 Utilities.status = Utilities.sp.getInt("status", 0);
-                                                Toast.makeText(getApplicationContext(), "Status: " + Utilities.status, Toast.LENGTH_SHORT).show();
                                                 switch (Utilities.status) {
                                                     case 0: //Not registered/logged in, go to LoginActivity
 

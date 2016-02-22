@@ -1,6 +1,7 @@
 package com.delta.pragyan16;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -73,6 +74,13 @@ public class LoginActivity extends ActionBarActivity {
             }
         });
 
+        registerText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    Intent i = new Intent(LoginActivity.this,RegisterActivity.class);
+                    startActivity(i);
+            }
+        });
     }
 
     public void performSignIn() {
@@ -99,7 +107,7 @@ public class LoginActivity extends ActionBarActivity {
                                     Toast.makeText(LoginActivity.this, "There was a problem connecting to the server. Please check your username and password and try again.", Toast.LENGTH_LONG).show();
                                     break;
                                 case 1:
-
+//STORING USER LOGIN DATA IN SHARED PREFERENCES
                                     SharedPreferences.Editor editor = Utilities.sp.edit();
                                     Utilities.status = 1;
                                     editor.putInt("status", Utilities.status);
