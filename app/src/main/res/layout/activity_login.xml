@@ -1,0 +1,113 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    android:background="@color/pragyan_dark_grey"
+    tools:context="com.delta.pragyan16.LoginActivity">
+
+    <TextView
+        android:id="@+id/welcomeToFestember"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center_horizontal"
+        android:text="Welcome to Pragyan!"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/emailIdEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColorHint="@color/white"
+            android:layout_weight="1"
+            android:hint="Email ID"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textSize="20sp" />
+
+        <CheckBox
+            android:id="@+id/showPasswordCheckBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:layout_gravity="center_vertical"
+            android:text="Show"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/signInButton"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginBottom="10dp"
+        android:layout_weight="1"
+        android:alpha="80"
+        android:clickable="true"
+        android:background="@color/pragyan_gold"
+        android:text="Sign in"
+        android:textColor="@color/white"
+        android:textSize="35sp" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New user? Click here"
+        android:textColor="@color/white"
+        android:id="@+id/registerText"
+        android:layout_marginTop="10dp"
+        android:textSize="25sp"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        />
+
+ <!--
+    <Button
+        android:id="@+id/RegisterButton"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="10sp"
+        android:textColor="@color/white"
+        android:layout_weight="1"
+        android:alpha="80"
+        android:background="@color/pragyan_gold"
+        android:clickable="true"
+        android:text="Register"
+        android:textSize="35sp" />
+    -->
+</LinearLayout>
+
+

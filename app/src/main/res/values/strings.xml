@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Pragyan16</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_events">EventsActivity</string>
+    <string name="title_activity_event_details">EventDetails</string>
+    <string name="title_activity_event_detail">Event Details</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="register">Register</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="title_activity_qrscreen">QRScreen</string>
+    <string name="Love"><![CDATA[Made with <3 by Delta Force]]></string>
+    <string name="title_activity_login">Sign in</string>
+</resources>
