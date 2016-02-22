@@ -64,11 +64,12 @@ public class LoginActivity extends ActionBarActivity {
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                performSignIn(); //TODO: delete this CRap
                 emailIdString = emailIdEdit.getText().toString();
                 passwordString = passwordEdit.getText().toString();
                 if (emailIdString.length() == 0) emailIdEdit.setError("Invalid username");
                 else if (passwordString.length() == 0) passwordEdit.setError("Invalid password");
-                else performSignIn();
+//                else performSignIn();
             }
         });
 

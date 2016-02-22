@@ -1,12 +1,12 @@
 package com.delta.pragyan16;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -24,7 +24,7 @@ public class TimingFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
+    private String eventName;
 
     private OnFragmentInteractionListener mListener;
 
@@ -36,8 +36,7 @@ public class TimingFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+
      * @return A new instance of fragment TimingFragment.
      */
     // TODO: Rename and change types and number of parameters
@@ -53,7 +52,7 @@ public class TimingFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            eventName = getArguments().getString(ARG_PARAM1);
         }
     }
 
@@ -61,7 +60,18 @@ public class TimingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_timing, container, false);
+        View v = inflater.inflate(R.layout.fragment_timing, container, false);
+        TextView startTime = (TextView)v. findViewById(R.id.startTime);
+        EventsAdapter adapter = new EventsAdapter(getActivity());
+        EventInfo eventInfo = adapter.getEventInfo(eventName);
+        startTime.setText(eventInfo.start_time);
+        TextView endTime = (TextView)v. findViewById(R.id.endTime);
+        endTime.setText(eventInfo.end_time);
+        TextView date = (TextView)v. findViewById(R.id.eventDate);
+        date.setText(eventInfo.date);
+        TextView venue = (TextView)v. findViewById(R.id.eventVenue);
+        venue.setText(eventInfo.venue);
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
