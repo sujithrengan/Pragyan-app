@@ -30,6 +30,7 @@
             android:name=".EventsActivity"
             android:label="@string/title_activity_events" />
         <activity
+            android:theme="@android:style/Theme.Holo.Light"
             android:name=".EventDetailActivity"
             android:label="@string/title_activity_event_detail" />
         <activity

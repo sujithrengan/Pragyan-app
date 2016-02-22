@@ -61,15 +61,15 @@ public class DetailsFragment extends Fragment {
         TextView eventDescription = (TextView) v.findViewById(R.id.descriptionDetail);
         EventInfo eventInfo = adapter.getEventInfo(eventName);
         eventDescription.setText(eventInfo.description);
-        Button register = (Button) v.findViewById(R.id.eventRegisterButton);
-        register.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                    }
-                }
-        );
+//        Button register = (Button) v.findViewById(R.id.eventRegisterButton);
+//        register.setOnClickListener(
+//                new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        //
+//                    }
+//                }
+//        );
 
 
         return v;

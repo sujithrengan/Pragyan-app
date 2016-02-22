@@ -40,12 +40,4 @@
 
     </ScrollView>
 
-    <Button
-        android:id="@+id/eventRegisterButton"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#3f85f4"
-        android:textColor="#ffffff"
-        android:text="@string/register"
-        android:layout_weight="1" />
 </LinearLayout>
