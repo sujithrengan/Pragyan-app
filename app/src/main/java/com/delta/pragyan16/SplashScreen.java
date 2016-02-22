@@ -13,6 +13,15 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.google.android.gms.gcm.GoogleCloudMessaging;
+
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -26,26 +35,39 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+
+import javax.xml.transform.ErrorListener;
 
 public class SplashScreen extends Activity {
 
     ImageView images[] = new ImageView[6];
+    String regid = new String();
+    GoogleCloudMessaging gcm = null;
     Animation animations[] = new Animation[6];
     ImageView bigLogo;
     int i;
+    String msg = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        GetEventsAPI g = new GetEventsAPI(SplashScreen.this,getApplicationContext());
+        GetEventsAPI g = new GetEventsAPI(SplashScreen.this, getApplicationContext());
         g.execute();
+        gcmreg();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 startAnimations();
             }
-        },1000);
+        }, 1000);
     }
 
     private void startAnimations() {
@@ -92,11 +114,10 @@ public class SplashScreen extends Activity {
                                         new Handler().postDelayed(new Runnable() {
                                             @Override
                                             public void run() {
-                                                Utilities.sp= getSharedPreferences("llep",0);
+                                                Utilities.sp = getSharedPreferences("llep", 0);
                                                 Utilities.status = Utilities.sp.getInt("status", 0);
-                                                Toast.makeText(getApplicationContext(),"Status: "+Utilities.status,Toast.LENGTH_SHORT).show();
-                                                switch(Utilities.status)
-                                                {
+                                                Toast.makeText(getApplicationContext(), "Status: " + Utilities.status, Toast.LENGTH_SHORT).show();
+                                                switch (Utilities.status) {
                                                     case 0: //Not registered/logged in, go to LoginActivity
 
                                                         SplashScreen.this.startActivity(new Intent(SplashScreen.this, LoginActivity.class));
@@ -111,9 +132,8 @@ public class SplashScreen extends Activity {
                                                 }
 
 
-
                                             }
-                                        },1000);
+                                        }, 1000);
                                     }
 
                                     @Override
@@ -141,7 +161,66 @@ public class SplashScreen extends Activity {
 
     }
 
-class GetEventsAPI extends AsyncTask<Void,Void,Boolean> {                            //   todo call once if the database is empty
+    public void gcmreg() {
+
+        new AsyncTask<Void, Void, String>() {
+            @Override
+            protected String doInBackground(Void... params) {
+                try {
+                    if (gcm == null) {
+                        gcm = GoogleCloudMessaging.getInstance(getApplicationContext());
+                    }
+                    regid = gcm.register("835229264934");
+                    Log.e("gcm_status", "registering device (regId = " + regid + ")");
+                    //        String serverUrl = Utilities.url_gcm;     TODO SERVERURL
+                    String serverUrl = "";                             //    TODO  GCM URL
+                    Log.e("gcm_status", "Attempt to register");
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            msg = response;
+                        }
+                    }, new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            error.printStackTrace();
+                            Log.e("gcm_status", "Failed to register :" + error);
+                            SplashScreen.this.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(SplashScreen.this, "Please check your internet and try again", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }
+                    }){
+                        @Override
+                        protected Map<String, String> getParams()
+                        {
+                            Map<String, String> params = new HashMap<>();
+                            // the POST parameters:
+                            //params.put("fes_id", Utilities._id); todo proper params
+                            params.put("gcm_id", regid);
+                            return params;
+                        }
+                    };
+                    // Add the request to the queue
+                    int socketTimeout = 10000;//10 seconds
+                    RetryPolicy policy = new DefaultRetryPolicy(socketTimeout, DefaultRetryPolicy.DEFAULT_MAX_RETRIES, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+                    stringRequest.setRetryPolicy(policy);
+                    Volley.newRequestQueue(SplashScreen.this).add(stringRequest);
+
+                } catch (IOException ex) {
+                    msg = "Error :" + ex.getMessage();
+                    Log.e("gcm_status", msg);
+                }
+                return msg;
+            }
+        }.execute(null, null, null);
+    }
+
+
+
+    class GetEventsAPI extends AsyncTask<Void, Void, Boolean> {                            //   todo call once if the database is empty
         //ProgressDialog dialog;
         JSONObject jsonObject = null, descriptionObject = null;
         EventsAdapter eventsAdapter;
@@ -156,7 +235,7 @@ class GetEventsAPI extends AsyncTask<Void,Void,Boolean> {                       
             eventsAdapter = new EventsAdapter(context);
         }
 
-        public GetEventsAPI(Activity activity, Context c){
+        public GetEventsAPI(Activity activity, Context c) {
             this.context = c;
             //dialog = new ProgressDialog(activity);
         }
@@ -167,10 +246,10 @@ class GetEventsAPI extends AsyncTask<Void,Void,Boolean> {                       
             String description = null;
             HttpClient client = new DefaultHttpClient();
             try {
-                HttpGet request = new HttpGet(MainActivity.URL+"/events/list");
+                HttpGet request = new HttpGet(MainActivity.URL + "/events/list");
                 HttpResponse response = client.execute(request);
                 HttpEntity httpEntity = response.getEntity();
-                if(httpEntity != null) {
+                if (httpEntity != null) {
                     InputStream inputStream = httpEntity.getContent();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"), 8);
                     StringBuilder sb = new StringBuilder();
@@ -183,10 +262,10 @@ class GetEventsAPI extends AsyncTask<Void,Void,Boolean> {                       
                     Log.i("json", jsonstring);
                     jsonObject = new JSONObject(jsonstring);
                 }
-                request = new HttpGet(MainActivity.URL+"/events/desclist");
+                request = new HttpGet(MainActivity.URL + "/events/desclist");
                 response = client.execute(request);
                 httpEntity = response.getEntity();
-                if(httpEntity != null) {
+                if (httpEntity != null) {
                     InputStream inputStream = httpEntity.getContent();
                     BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"), 8);
                     StringBuilder sb = new StringBuilder();
@@ -196,17 +275,17 @@ class GetEventsAPI extends AsyncTask<Void,Void,Boolean> {                       
                     }
                     inputStream.close();
                     description = sb.toString();
-                    Log.i("json",jsonstring);
+                    Log.i("json", jsonstring);
                     descriptionObject = new JSONObject(description);
                 }
             } catch (IOException e) {
                 Log.e("Buffer Error", "Error parsing result " + e.toString());
-            }catch (JSONException e){
+            } catch (JSONException e) {
                 Log.e("JSON Error", "Error parsing result " + e.toString());
             }
-            if((jsonstring!=null && jsonObject!=null)||(description!=null && descriptionObject!=null)){
+            if ((jsonstring != null && jsonObject != null) || (description != null && descriptionObject != null)) {
                 try {
-                    if(jsonObject.getJSONArray("data")!=null && descriptionObject.getJSONArray("data")!=null)
+                    if (jsonObject.getJSONArray("data") != null && descriptionObject.getJSONArray("data") != null)
                         return true;
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -220,15 +299,15 @@ class GetEventsAPI extends AsyncTask<Void,Void,Boolean> {                       
             super.onPostExecute(aBoolean);
             //if(dialog.isShowing())
             // dialog.dismiss();
-            if(aBoolean) {
+            if (aBoolean) {
                 try {
                     JSONArray jsonArray = jsonObject.getJSONArray("data");
                     JSONArray descArray = descriptionObject.getJSONArray("data");
-                    for(int i=0;i<jsonArray.length();i++){
+                    for (int i = 0; i < jsonArray.length(); i++) {
                         JSONObject tempjsonObject = jsonArray.getJSONObject(i);
                         JSONObject tempdescObject = descArray.getJSONObject(i);
-                        if(tempdescObject.getInt("event_id") != tempjsonObject.getInt("event_id"))
-                            Log.i("JSON Events","Mismatched contents in the API");
+                        if (tempdescObject.getInt("event_id") != tempjsonObject.getInt("event_id"))
+                            Log.i("JSON Events", "Mismatched contents in the API");
                         EventInfo eventInfo = new EventInfo();
                         eventInfo.name = tempjsonObject.getString("event_name");
                         eventInfo.id = tempjsonObject.getInt("event_id");
@@ -245,17 +324,18 @@ class GetEventsAPI extends AsyncTask<Void,Void,Boolean> {                       
                         eventsAdapter.add_event(eventInfo);
                     }
 
-                    Log.i("Cluster",eventsAdapter.getCluster().toString());
-                    Log.i("Event",eventsAdapter.getEventnamesOfCluster("Amalgam").toString());
-                    Log.i("Event Info",eventsAdapter.getEventInfo("Inspinature").description);
+                    Log.i("Cluster", eventsAdapter.getCluster().toString());
+                    Log.i("Event", eventsAdapter.getEventnamesOfCluster("Amalgam").toString());
+                    Log.i("Event Info", eventsAdapter.getEventInfo("Inspinature").description);
 
                 } catch (JSONException e) {
-                    Log.i("JSON"," Json exception in on post Execute");
+                    Log.i("JSON", " Json exception in on post Execute");
                 }
-            }else{
+            } else {
                 Toast.makeText(getApplicationContext(), "Poor connectivity. Failed to update!", Toast.LENGTH_SHORT).show();
             }
         }
     }
+
 
 }
