@@ -30,7 +30,6 @@ public class GCMMessageHandler extends IntentService {
 
     @Override
     public void onCreate() {
-        // TODO Auto-generated method stub
         super.onCreate();
     }
 

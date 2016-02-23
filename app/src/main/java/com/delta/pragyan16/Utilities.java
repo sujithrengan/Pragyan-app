@@ -23,7 +23,9 @@ public class Utilities {
                                                 //5. name
                                                 //6. pid
                                                 //7. fullname
+                                                //8. gcm_registered
     public static int status = 0;
+    public static int gcm_registered = 1;
     public static String pragyan_mail;
     public static String pragyan_pass;
     public static String name;

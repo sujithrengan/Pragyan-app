@@ -3,6 +3,7 @@ package com.delta.pragyan16;
 import android.app.IntentService;
 import android.content.Intent;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.util.Log;
 import android.widget.Toast;
@@ -12,10 +13,13 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.RetryPolicy;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
+
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -45,6 +49,16 @@ public class GCMRegisterService extends IntentService {
                 @Override
                 public void onResponse(String response) {
                     msg = response;
+                    try {
+                        JSONObject js = new JSONObject(response);
+                        int gcm = js.getInt("status_code");
+                        Utilities.gcm_registered = 1;
+                        SharedPreferences.Editor editor = Utilities.sp.edit();
+                        editor.putInt("gcm_registered", Utilities.gcm_registered);
+                        editor.apply();
+                    }catch (Exception e){
+                        e.printStackTrace();
+                    }
                 }
             }, new Response.ErrorListener() {
                 @Override

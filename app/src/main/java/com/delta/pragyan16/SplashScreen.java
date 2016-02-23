@@ -44,7 +44,8 @@ public class SplashScreen extends Activity {
         setContentView(R.layout.activity_splash_screen);
         GetEventsAPI g = new GetEventsAPI(SplashScreen.this, getApplicationContext());
         g.execute();
-        GCMRegisterService.register(this);
+        if(Utilities.status == 1 && Utilities.gcm_registered == 0)
+            GCMRegisterService.register(this);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -100,11 +101,12 @@ public class SplashScreen extends Activity {
                                                 Utilities.sp = getSharedPreferences("llep", 0);
                                                 Utilities.status = Utilities.sp.getInt("status", 0);
 
-                                                Utilities.pragyan_mail =Utilities.sp.getString("pragyan_mail","");
-                                                Utilities.pid =Utilities.sp.getInt("pid",-1);
-                                                Utilities.pragyan_pass =Utilities.sp.getString("pragyan_pass","");
+                                                Utilities.pragyan_mail =Utilities.sp.getString("pragyan_mail", "");
+                                                Utilities.pid =Utilities.sp.getInt("pid", -1);
+                                                Utilities.pragyan_pass =Utilities.sp.getString("pragyan_pass", "");
                                                 Utilities.name = Utilities.sp.getString("name",null);
                                                 Utilities.fullname = Utilities.sp.getString("fullname",null);
+                                                Utilities.gcm_registered = Utilities.sp.getInt("gcm_registered", 0);
                                                 switch (Utilities.status) {
                                                     case 0: //Not registered/logged in, go to LoginActivity
 
@@ -149,7 +151,7 @@ public class SplashScreen extends Activity {
 
     }
 
-    class GetEventsAPI extends AsyncTask<Void, Void, Boolean> {                            //   todo call once if the database is empty
+    class GetEventsAPI extends AsyncTask<Void, Void, Boolean> {
         //ProgressDialog dialog;
         JSONObject jsonObject = null, descriptionObject = null;
         EventsAdapter eventsAdapter;

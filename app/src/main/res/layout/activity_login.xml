@@ -10,8 +10,8 @@
     android:background="@color/pragyan_dark_grey"
     tools:context="com.delta.pragyan16.LoginActivity">
 
-    <com.delta.pragyan16.fTextView
-        android:id="@+id/welcomeToFestember"
+    <TextView
+        android:id="@+id/welcomeToPragyan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -34,11 +34,9 @@
             android:textColorHint="@color/white"
             android:layout_weight="1"
             android:hint="Email ID"
-
-            android:imeOptions="actionNext"
             android:inputType="textEmailAddress"
             android:textColor="@color/white"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
     </LinearLayout>
 
@@ -58,18 +56,16 @@
             android:layout_weight="1"
             android:hint="Password"
             android:inputType="textPassword"
-            android:imeOptions="actionDone"
-            android:textSize="18sp" />
+            android:textSize="20sp" />
 
         <CheckBox
             android:id="@+id/showPasswordCheckBox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
+            android:textColor="@color/white"
             android:layout_gravity="center_vertical"
-            android:text=""
-
-            android:textSize="16sp" />
+            android:text="Show"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <Button
@@ -86,14 +82,14 @@
         android:textSize="35sp" />
 
 
-    <com.delta.pragyan16.fTextView
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New user? Click here"
         android:textColor="@color/white"
         android:id="@+id/registerText"
         android:layout_marginTop="10dp"
-        android:textSize="22sp"
+        android:textSize="25sp"
         android:layout_gravity="center"
         android:textAlignment="center"
         />

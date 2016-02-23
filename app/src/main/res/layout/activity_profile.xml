@@ -10,15 +10,15 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.delta.pragyan16.ProfileActivity">
 
-    <TextView
-        android:id="@+id/welcomeText"
+    <com.delta.pragyan16.fTextView
+        android:id="@+id/welcomeTextfull"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome, "
         android:textSize="30sp" />
 
-    <TextView
-        android:id="@+id/f_id"
+    <com.delta.pragyan16.fTextView
+        android:id="@+id/p_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="10dp"
@@ -26,7 +26,7 @@
         android:textSize="25sp" />
 
 
-    <TextView
+    <com.delta.pragyan16.fTextView
         android:id="@+id/email_id"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,7 +40,7 @@
         Email ID
     -->
 
-    <TextView
+    <com.delta.pragyan16.fTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -58,13 +58,13 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_weight="1" />
-        <TextView
+        <com.delta.pragyan16.fTextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
 
             android:gravity="center"
             android:textSize="20sp"
             android:id="@+id/loadingtext"
-            android:text="None\nIt's not too late to register for one!"/>
+            android:text="Loading ..."/>
     </FrameLayout>
 </LinearLayout>

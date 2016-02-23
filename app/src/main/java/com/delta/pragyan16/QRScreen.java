@@ -56,6 +56,8 @@ public class QRScreen extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrscreen);
+        fTextView welcome = (fTextView) findViewById(R.id.welcomeText);
+        welcome.setText("Welcome "+Utilities.name+", ");
         ImageView qrCodeImage = (ImageView) findViewById(R.id.qr_code_image);
         SaveImage saveImage = new SaveImage(String.valueOf(Utilities.pid), null);
         Bitmap bitmap = saveImage.loadFromCacheFile();

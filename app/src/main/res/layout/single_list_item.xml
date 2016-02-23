@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<com.delta.pragyan16.fTextView
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:background="@color/pragyan_gold"
+    android:gravity="center"
+    android:textSize="30sp"
+    android:id="@+id/regevent"
+    android:text="asdfasdf"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:textColor="#ffffff" />

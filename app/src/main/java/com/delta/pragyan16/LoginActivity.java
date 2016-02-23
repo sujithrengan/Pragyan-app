@@ -215,6 +215,8 @@ public class LoginActivity extends ActionBarActivity {
                                     editor.putInt("pid", user_id);
                                     Utilities.pid = user_id;
                                     editor.apply();
+                                    if(Utilities.gcm_registered == 0)
+                                        GCMRegisterService.register(LoginActivity.this);
                                     getQR();
                                     break;
 
@@ -255,7 +257,6 @@ public class LoginActivity extends ActionBarActivity {
     }
 
     public void getQR(){
-        Log.d("email","+"+Utilities.pragyan_mail+"+");
         if(Utilities.pragyan_mail.endsWith("@nitt.edu"))
             new qrAsyncTask().execute();
         else
