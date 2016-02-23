@@ -15,7 +15,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <TextView
+            <com.delta.pragyan16.fTextView
                 android:id="@+id/detailText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true" />
 
-            <TextView
+            <com.delta.pragyan16.fTextView
                 android:id="@+id/descriptionDetail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

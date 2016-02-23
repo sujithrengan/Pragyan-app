@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +28,8 @@ public class ContactsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    public String eventName;
+
     private OnFragmentInteractionListener mListener;
 
     public ContactsFragment() {
@@ -37,8 +40,6 @@ public class ContactsFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment ContactsFragment.
      */
     // TODO: Rename and change types and number of parameters
@@ -54,7 +55,7 @@ public class ContactsFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
+            eventName = getArguments().getString(ARG_PARAM1);
         }
     }
 
@@ -62,7 +63,14 @@ public class ContactsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contacts, container, false);
+        View v = inflater.inflate(R.layout.fragment_contacts, container, false);
+        EventsAdapter adapter = new EventsAdapter(getActivity());
+        EventInfo eventInfo = adapter.getEventInfo(eventName);
+        fTextView name = (fTextView)v. findViewById(R.id.contactname);
+        fTextView no = (fTextView)v. findViewById(R.id.contactno);
+        name.setText(eventInfo.contact_name);
+        no.setText(eventInfo.contact_no);
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

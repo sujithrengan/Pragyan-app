@@ -1,13 +1,30 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.delta.pragyan16.ContactsFragment">
+    tools:context="com.delta.pragyan16.TimingFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="COntacts" />
 
-</FrameLayout>
+    <com.delta.pragyan16.fTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
+        android:textSize="25sp"
+        android:text="Start Time "
+        android:id="@+id/contactname"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp" />
+
+    <com.delta.pragyan16.fTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/contactno"
+        android:layout_below="@+id/contactname"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp" />
+    </RelativeLayout>

@@ -6,7 +6,6 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 
 /**
@@ -61,15 +60,15 @@ public class TimingFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_timing, container, false);
-        TextView startTime = (TextView)v. findViewById(R.id.startTime);
+        fTextView startTime = (fTextView)v. findViewById(R.id.startTime);
         EventsAdapter adapter = new EventsAdapter(getActivity());
         EventInfo eventInfo = adapter.getEventInfo(eventName);
         startTime.setText(eventInfo.start_time);
-        TextView endTime = (TextView)v. findViewById(R.id.endTime);
+        fTextView endTime = (fTextView)v. findViewById(R.id.endTime);
         endTime.setText(eventInfo.end_time);
-        TextView date = (TextView)v. findViewById(R.id.eventDate);
+        fTextView date = (fTextView)v. findViewById(R.id.eventDate);
         date.setText(eventInfo.date);
-        TextView day = (TextView) v.findViewById(R.id.eventDay);
+        fTextView day = (fTextView) v.findViewById(R.id.eventDay);
         switch(eventInfo.date){
             case "2016-02-28":
                 day.setText("Day 3");
@@ -84,7 +83,7 @@ public class TimingFragment extends Fragment {
                 day.setText("Day 0");
 
         }
-        TextView venue = (TextView)v. findViewById(R.id.eventVenue);
+        fTextView venue = (fTextView)v. findViewById(R.id.eventVenue);
         venue.setText(eventInfo.venue);
         return v;
     }

@@ -44,7 +44,8 @@
         <activity
             android:name=".EventDetailActivity"
             android:label="@string/title_activity_event_detail"
-            android:theme="@android:style/Theme.Holo.Light" />
+            android:theme="@android:style/Theme.Holo"
+            />
         <activity
             android:name=".UpcomingActivity"
             android:icon="@mipmap/ic_launcher"

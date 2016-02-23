@@ -8,6 +8,9 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 /**
@@ -104,6 +107,26 @@ public class EventsAdapter {
                 eventInfo.venue = cursor.getString(cursor.getColumnIndex(EventsHelper.VENUE));
                 eventInfo.date = cursor.getString(cursor.getColumnIndex(EventsHelper.DATE));
                 eventInfo.description = cursor.getString(cursor.getColumnIndex(EventsHelper.DESCRIP));
+                try {
+                    JSONArray jsonArray2 = new JSONArray(Utilities.contacts);
+                    JSONObject jsonObject;
+                    for (int i = 0; i < jsonArray2.length(); i++) {
+                        jsonObject = jsonArray2.getJSONObject(i);
+                        if (eventInfo.id == jsonObject.getInt("event_id")) {
+                            eventInfo.contact_name = jsonObject.getString("contact_name");
+                            eventInfo.contact_no = jsonObject.getString("contact_no");
+                            break;
+                        } else {
+                            eventInfo.contact_name = "Contact";
+                            eventInfo.contact_no = "Pragyan";
+                        }
+
+
+                    }
+                }catch(Exception e){
+                    e.printStackTrace();
+                }
+
             }
         }
         cursor.close();
