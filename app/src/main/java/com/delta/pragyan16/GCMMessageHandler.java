@@ -55,30 +55,22 @@ public class GCMMessageHandler extends IntentService {
                             .setContentText(newMessage)
                             .setDefaults(Notification.DEFAULT_ALL)
                             .setLights(Color.GREEN, 500, 500);
-
-            //mBuilder.setLights(Color.BLUE, 500, 500);
-            //long[] pattern = {500,500,500,500,500,500,500,500,500};
-            //mBuilder.setVibrate(pattern);
             DBController controller = new DBController(context);
             HashMap<String, String> queryValues = new HashMap<String, String>();
 
             Calendar c = Calendar.getInstance();
             String currentDateandTime = new SimpleDateFormat("HH:mm").format(new Date());
-            // date = c.get(Calendar.DATE);
             queryValues.put("notifText",newMessage);
-            String t=currentDateandTime+" , Day "+String.valueOf(c.get(Calendar.DATE)-24);
+            String t=currentDateandTime+" , Day "+String.valueOf(c.get(Calendar.DATE)-25);
             Log.e("time",t);
             queryValues.put("time",t);
-
-            // Add userID extracted from Object
-
-            // Insert User into SQLite DB
-
+            queryValues.put("title",title);
             controller.insertNotif(queryValues);
             NotificationCompat.InboxStyle inboxStyle;
 
             inboxStyle = new NotificationCompat.InboxStyle();
-            String[] events = new String[6];
+            String[] events;
+            //TODO push notifications to be stacked
 
             events = newMessage.split("\n");
             inboxStyle.setBigContentTitle(title);
@@ -88,13 +80,13 @@ public class GCMMessageHandler extends IntentService {
                 inboxStyle.addLine(events[i]);
             }
             mBuilder.setStyle(inboxStyle);
-            /*
-            Intent resultIntent = new Intent(context, Notify.class); TODO GET notify class intent
+
+            Intent resultIntent = new Intent(context, Notify.class);
 
             Bundle b = new Bundle();
             b.putString("key", newMessage);
             resultIntent.putExtras(b);
-            */
+
 
             // The stack builder object will contain an artificial back stack
             // for the
@@ -102,15 +94,15 @@ public class GCMMessageHandler extends IntentService {
             // This ensures that navigating backward from the Activity leads out
             // of
             // your application to the Home screen.
-     //       TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
+            TaskStackBuilder stackBuilder = TaskStackBuilder.create(context);
             // Adds the back stack for the Intent (but not the Intent itself)
-     //       stackBuilder.addParentStack(Notify.class);            TODO GET notify class intent
+            stackBuilder.addParentStack(Notify.class);
             // Adds the Intent that starts the Activity to the top of the stack
 
-       //     stackBuilder.addNextIntent(resultIntent);              TODO GET notify class intent
-//            PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
-//                    0, PendingIntent.FLAG_UPDATE_CURRENT);
-//            mBuilder.setContentIntent(resultPendingIntent);
+            stackBuilder.addNextIntent(resultIntent);
+            PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(
+                    0, PendingIntent.FLAG_UPDATE_CURRENT);
+            mBuilder.setContentIntent(resultPendingIntent);
 
             NotificationManager mNotificationManager = (NotificationManager) context
                     .getSystemService(Context.NOTIFICATION_SERVICE);

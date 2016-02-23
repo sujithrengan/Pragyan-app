@@ -16,4 +16,5 @@
     <string name="Love">Made with \u2665 by Delta Force</string>
     <string name="title_activity_login">Sign in</string>
     <string name="title_activity_register">Registration</string>
+    <string name="title_activity_notify">Notify</string>
 </resources>
