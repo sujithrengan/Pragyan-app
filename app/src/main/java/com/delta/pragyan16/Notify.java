@@ -80,7 +80,7 @@ public class Notify extends ActionBarActivity {
         ListView listView = (ListView) findViewById(R.id.list_notif);
         listView.setAdapter(listad);
 
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(Utilities.strcolors[notifList.size()%Utilities.strcolors.length])));
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(Utilities.strcolorsEvents[notifList.size()%Utilities.strcolorsEvents.length])));
 
     }
 
@@ -139,7 +139,7 @@ public class Notify extends ActionBarActivity {
             viewHolder.text.setText(mData.get(position).get(KEY_TEXT));
             viewHolder.time.setText(mData.get(position).get(KEY_TIME));
             viewHolder.title.setText(mData.get(position).get(KEY_TITLE));
-            convertView.setBackgroundColor(Color.parseColor(Utilities.strcolors[position % Utilities.strcolors.length]));
+            convertView.setBackgroundColor(Color.parseColor(Utilities.strcolorsEvents[position % Utilities.strcolorsEvents.length]));
 
 
             return convertView;

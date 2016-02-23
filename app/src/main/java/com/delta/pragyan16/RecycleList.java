@@ -1,9 +1,11 @@
 package com.delta.pragyan16;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -39,6 +41,7 @@ public class RecycleList extends RecyclerView.Adapter<RecycleList.CustomViewHold
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
         public TextView Event,Time,Location,Cate,text;
+        public LinearLayout llglow;
         public RelativeLayout lay;
 
         public CustomViewHolder(View view) {
@@ -49,7 +52,7 @@ public class RecycleList extends RecyclerView.Adapter<RecycleList.CustomViewHold
             this.Location=(TextView) view.findViewById(R.id.Location);
             this.Cate = (TextView) view.findViewById(R.id.Cate);
             this.lay=(RelativeLayout)itemView.findViewById(R.id.singlelistlayout);
-            //this.text=(TextView)view.findViewById(R.id.textView);
+            this.llglow = (LinearLayout) view.findViewById(R.id.glow);
 
         }
     }
@@ -104,14 +107,20 @@ public class RecycleList extends RecyclerView.Adapter<RecycleList.CustomViewHold
         customViewHolder.Event.setText(propergram(temp[0]));
         customViewHolder.Location.setText(propergram(temp[1]));
         customViewHolder.Cate.setText(propergram(temp[2]));
-
+        customViewHolder.llglow.setVisibility(View.GONE);
         //calculates time left for begining an event
         if (time5.after(timenow)) {
 
             a =((int)((time5.getTimeInMillis() - timenow.getTimeInMillis())/3600000));
             b =((int)((time5.getTimeInMillis() - timenow.getTimeInMillis())/60000))%60;
-
-            customViewHolder.Time.setText("begins in " + a + " hours " + b + " mins ");
+            if(a!=0) {
+                if(b==0)
+                customViewHolder.Time.setText("begins in " + a + " hours ");
+                else
+                    customViewHolder.Time.setText("begins in " + a + " hours " + b + " mins ");
+            }
+            else
+                customViewHolder.Time.setText("begins in " + b + " mins ");
         }
         //calculates time left for end of an ongoing event
         else if (time6.before(timenow)) {
@@ -122,7 +131,16 @@ public class RecycleList extends RecyclerView.Adapter<RecycleList.CustomViewHold
 
             c = ((int)((time6.getTimeInMillis() - timenow.getTimeInMillis())/3600000));
             d =((int)((time6.getTimeInMillis() - timenow.getTimeInMillis())/60000))%60;
-            customViewHolder.Time.setText("ends in " + c + " hours " + d + " mins ");
+            if(c!=0) {
+                if (d == 0)
+                    customViewHolder.Time.setText("ends in " + c + " hours ");
+                else
+                    customViewHolder.Time.setText("ends in " + c + " hours " + d + " mins ");
+            }
+            else
+                customViewHolder.Time.setText("ends in " + d + " mins ");
+            customViewHolder.llglow.setVisibility(View.VISIBLE);
+            customViewHolder.llglow.setBackgroundColor(Color.parseColor("#00C853"));
         }
     }
 
