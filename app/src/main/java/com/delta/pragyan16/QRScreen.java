@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Base64;
@@ -56,16 +57,24 @@ public class QRScreen extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrscreen);
         ImageView qrCodeImage = (ImageView) findViewById(R.id.qr_code_image);
-        qrCodeImage.setVisibility(View.VISIBLE);
-        SaveImage saveImage = new SaveImage(Utilities.pragyan_mail, null);              //TODO change it to pid
+        SaveImage saveImage = new SaveImage(String.valueOf(Utilities.pid), null);
         Bitmap bitmap = saveImage.loadFromCacheFile();
-        qrCodeImage.setImageBitmap(bitmap);
-        //GetQR();
-        //new qrAsyncTask().execute();
-
+        if(bitmap==null) {
+            getQR();
+        }else {
+            qrCodeImage.setVisibility(View.VISIBLE);
+            qrCodeImage.setImageBitmap(bitmap);
+        }
     }
 
-public void GetQR() {
+    public void getQR(){
+        if(Utilities.pragyan_mail.endsWith("@nitt.edu"))
+            new qrAsyncTask().execute();
+        else
+            GetQRNonNitt();
+
+    }
+    public void GetQRNonNitt() {
 
     final ProgressDialog pDialog = new ProgressDialog(this);
     pDialog.setMessage("Getting QR...");
@@ -81,10 +90,9 @@ public void GetQR() {
             Bitmap bitmap = BitmapFactory.decodeByteArray(imageAsBytes, 0, imageAsBytes.length);
             image.setVisibility(View.VISIBLE);
             image.setImageBitmap(bitmap);
-            SaveImage save =  new SaveImage(Utilities.pragyan_mail, null);              //TODO change it to pid
+            SaveImage save =  new SaveImage(String.valueOf(Utilities.pid), null);
             save.saveToCacheFile(bitmap);
             addImageToGallery(save.getCacheFilename(), QRScreen.this);
-
             Toast.makeText(QRScreen.this, "Image saved to gallery", Toast.LENGTH_LONG).show();
             pDialog.dismiss();
         }
@@ -102,8 +110,7 @@ public void GetQR() {
         {
             Map<String, String> params = new HashMap<>();
             // the POST parameters:
-            int pid = 2;                                        //TODO get pid
-            params.put("id", String.valueOf(pid));
+            params.put("id", String.valueOf(Utilities.pid));
             return params;
         }
 
@@ -145,7 +152,7 @@ public void GetQR() {
             HttpPost httppost = new HttpPost(Utilities.url_qr);
             try {
                 List nameValuePairs = new ArrayList();
-                nameValuePairs.add(new BasicNameValuePair("user_roll", Utilities.pragyan_mail));
+                nameValuePairs.add(new BasicNameValuePair("user_roll", Utilities.name));
                 nameValuePairs.add(new BasicNameValuePair("user_pass", Utilities.pragyan_pass));
 
                 httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs, "UTF-8"));
@@ -170,13 +177,18 @@ public void GetQR() {
         protected void onPostExecute(Bitmap bmp) {
             super.onPostExecute(bmp);
             myPd_ring.dismiss();
+            if(bmp != null){
             ImageView show_image = (ImageView) findViewById(R.id.qr_code_image);
-            show_image.setImageBitmap(bmp);
-            SaveImage save =  new SaveImage(Utilities.pragyan_mail, null);              //TODO change it to pid
+            show_image.setVisibility(View.VISIBLE);
+                show_image.setImageBitmap(bmp);
+            SaveImage save =  new SaveImage(String.valueOf(Utilities.pid), null);
             save.saveToCacheFile(bmp);
             addImageToGallery(save.getCacheFilename(), QRScreen.this);
 
             Toast.makeText(QRScreen.this, "Image saved to gallery", Toast.LENGTH_LONG).show();
+        }else{
+                new Handler().post(new DisplayToast(QRScreen.this,"QR not received"));
+            }
         }
     }
 }

@@ -99,6 +99,12 @@ public class SplashScreen extends Activity {
                                             public void run() {
                                                 Utilities.sp = getSharedPreferences("llep", 0);
                                                 Utilities.status = Utilities.sp.getInt("status", 0);
+
+                                                Utilities.pragyan_mail =Utilities.sp.getString("pragyan_mail","");
+                                                Utilities.pid =Utilities.sp.getInt("pid",-1);
+                                                Utilities.pragyan_pass =Utilities.sp.getString("pragyan_pass","");
+                                                Utilities.name = Utilities.sp.getString("name",null);
+                                                Utilities.fullname = Utilities.sp.getString("fullname",null);
                                                 switch (Utilities.status) {
                                                     case 0: //Not registered/logged in, go to LoginActivity
 

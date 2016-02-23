@@ -82,7 +82,7 @@ public class GCMMessageHandler extends IntentService {
             String[] events = new String[6];
 
             events = newMessage.split("\n");
-            inboxStyle.setBigContentTitle("Event details:");
+            inboxStyle.setBigContentTitle(title);
 
             for (int i = 0; i < events.length; i++) {
 
@@ -117,8 +117,8 @@ public class GCMMessageHandler extends IntentService {
                     .getSystemService(Context.NOTIFICATION_SERVICE);
 
             // Start of a loop that processes data and then notifies the user
-
             //mBuilder.setContentText(newMessage).setNumber(numMessages);
+
 
             // Sets an ID for the notification, so it can be updated
 

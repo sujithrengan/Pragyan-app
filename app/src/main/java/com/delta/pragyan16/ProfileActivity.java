@@ -45,8 +45,17 @@ public class ProfileActivity extends ActionBarActivity {
             editor.putInt("status", 0);
             editor.putString("pragyan_mail", null);
             editor.putString("pragyan_pass", null);
+            editor.putString("name", null);
+            editor.putString("fullname", null);
+            editor.putInt("pid", -1);
+            Utilities.pragyan_mail = "";
+            Utilities.pid = -1;
+            Utilities.pragyan_pass = "";
+            Utilities.name = null;
+            Utilities.fullname = null;
+            Utilities.status = 0;
             editor.apply();
-            Intent intent = new Intent(ProfileActivity.this, SplashScreen.class);
+            Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
 

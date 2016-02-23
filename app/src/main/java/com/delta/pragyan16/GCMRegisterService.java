@@ -23,7 +23,6 @@ import java.util.Map;
 public class GCMRegisterService extends IntentService {
     static Context context;
     static String msg;
-    Handler toastHandler;
     public static void register(Context cont) {
         context = cont;
         Intent intent = new Intent(cont, GCMRegisterService.class);
@@ -35,14 +34,13 @@ public class GCMRegisterService extends IntentService {
     }
     @Override
     protected void onHandleIntent(Intent intent) {
-        Log.i("gcm_status","intent service called");
         InstanceID instanceID = InstanceID.getInstance(this);
         try {
             final String token = instanceID.getToken(getString(R.string.gcm_defaultSenderId),
                     GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
             Log.i("gcm_status",token.toString());
             String serverUrl = Utilities.url_gcm;
-            Log.e("gcm_status", "Attempt to register");
+            //Log.e("gcm_status", "Attempt to register");
             StringRequest stringRequest = new StringRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
@@ -52,8 +50,8 @@ public class GCMRegisterService extends IntentService {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     error.printStackTrace();
-                    Log.e("gcm_status", "Failed to register :" + error);
-                    toastHandler.post(new DisplayToast(context, "Please check your internet and try again"));
+                    //Log.e("gcm_status", "Failed to register :" + error);
+                    new Handler().post(new DisplayToast(context, "Please check your internet and Try again"));
                 }
             }){
                 @Override
@@ -61,7 +59,7 @@ public class GCMRegisterService extends IntentService {
                 {
                     Map<String, String> params = new HashMap<>();
                     // the POST parameters:
-                    params.put("p_id", "1024");//Utilities._id);
+                    params.put("p_id", String.valueOf(Utilities.pid));
                     params.put("gcm_id", token);
                     return params;
                 }
@@ -74,23 +72,5 @@ public class GCMRegisterService extends IntentService {
         }catch(Exception e){
             e.printStackTrace();
         }
-
-        /*
-        if (intent != null) {
-            final String action = intent.getAction();
-            if (ACTION_FOO.equals(action)) {
-                final String param1 = intent.getStringExtra(EXTRA_PARAM1);
-                final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                handleActionFoo(param1, param2);
-            } else if (ACTION_BAZ.equals(action)) {
-                final String param1 = intent.getStringExtra(EXTRA_PARAM1);
-                final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                handleActionBaz(param1, param2);
-            }
-        }*/
-    }
-    private void handleActionBaz(String param1, String param2) {
-        // TODO: Handle action Baz
-        throw new UnsupportedOperationException("Not yet implemented");
     }
 }

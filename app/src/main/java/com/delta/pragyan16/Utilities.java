@@ -20,16 +20,22 @@ public class Utilities {
                                                     // 1 - Logged in                --> redirect to MainActivity
                                                 //3. pragyan_mail
                                                 //4. pragyan_pass
+                                                //5. name
+                                                //6. pid
+                                                //7. fullname
     public static int status = 0;
     public static String pragyan_mail;
     public static String pragyan_pass;
+    public static String name;
+    public static String fullname;
+    public static int pid;
 
-    public static String url_auth = "";//"https://api.festember.com/user/auth";
-
+    public static String url_auth = "https://api.pragyan.org/user/auth";
+    public static String url_details = "https://api.pragyan.org/user/getDetails";
     public static String url_reg = "https://api.pragyan.org/user/register";
+    public static String url_event_details = "https://api.pragyan.org/user/getEvents";
     public static String url_qr = "http://api.pragyan.org/tshirt/qrcode";
-    public static String url_gcm = "http://415b1a40.ngrok.com/festember-app-gcm/register.php";
-
+    public static String url_gcm = "https://pragyan.org/simple-gcm/register.php";
 
 
     public static void init_colors()

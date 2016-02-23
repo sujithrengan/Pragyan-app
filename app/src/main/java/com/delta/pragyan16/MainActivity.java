@@ -28,7 +28,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-
+//TODO Starts again when back pressed should be taken care of
 public class MainActivity extends Activity {
     public static final String URL = "http://api.pragyan.org";
 
