@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
     public LinearLayout[] frac;
     public int offset=0;
     public int FRAC_COUNT=10;
-    TextView txtschedule,txtevents,txtprofile;
+    TextView txtschedule,txtevents,txtprofile, txtupcoming;
     Typeface typeface;
 
 
@@ -105,9 +105,14 @@ public class MainActivity extends Activity {
 
             txtevents=(TextView)findViewById(R.id.txtevents);
             txtschedule=(TextView)findViewById(R.id.txtschedule);
+        txtprofile=(TextView)findViewById(R.id.txtprofile);
+            txtupcoming=(TextView)findViewById(R.id.txtupcoming);
+
         typeface = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/Roboto-Light.ttf");
         txtevents.setTypeface(typeface);
         txtschedule.setTypeface(typeface);
+        txtprofile.setTypeface(typeface);
+                txtupcoming.setTypeface(typeface);
 
         frac[0].setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -153,6 +158,7 @@ view.setSelected(true);
         editor.putInt("offset", offset);
 
         editor.apply();
+        Utilities.offset = offset;
 
     }
 

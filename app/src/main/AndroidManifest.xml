@@ -34,10 +34,13 @@
         </activity>
         <activity
             android:name=".ClustersActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:label="@string/title_activity_events" />
         <activity
             android:name=".EventsActivity"
-            android:label="@string/title_activity_events" />
+            android:label="@string/title_activity_events"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
+            />
         <activity
             android:name=".EventDetailActivity"
             android:label="@string/title_activity_event_detail"

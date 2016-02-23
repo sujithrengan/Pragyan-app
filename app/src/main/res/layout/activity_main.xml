@@ -47,9 +47,17 @@ android:weightSum="2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:padding="5dp"
                 android:background="#d35400"
                 android:id="@+id/frac3">
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="upcoming notifications"
+                        android:textSize="24sp"
+                        android:textColor="#ffffff"
+                        android:id="@+id/txtupcoming"
+                        />
                 </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -144,8 +152,18 @@ android:weightSum="2"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="#e67e22"
+                    android:gravity="right"
+                    android:padding="5dp"
                     android:id="@+id/frac4">
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="profile"
+                        android:textColor="#ffffff"
+                        android:textSize="22sp"
+                        android:id="@+id/txtprofile"
+                        />
                     </LinearLayout>
 
             </LinearLayout>

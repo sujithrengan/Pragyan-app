@@ -55,7 +55,7 @@ public class ProfileActivity extends ActionBarActivity {
         fTextView welcome = (fTextView) findViewById(R.id.welcomeTextfull);
         fTextView p_id = (fTextView) findViewById(R.id.p_id);
         fTextView email = (fTextView) findViewById(R.id.email_id);
-        welcome.setText("Welcome "+Utilities.fullname+", ");
+        welcome.setText("Welcome, "+Utilities.fullname+"!");
         p_id.setText("Pragyan ID: "+String.valueOf(Utilities.pid));
         email.setText("Email ID: "+Utilities.pragyan_mail);
         setData();

@@ -25,8 +25,9 @@ public class EventsActivity extends Activity {
         events = eventsAdapter.getEventnamesOfCluster(cluster);
         String[] eventsArray = new String[events.size()];
         eventsArray = events.toArray(eventsArray);
-        GridAdapter adapter = new GridAdapter(this,eventsArray);
+        GridAdapter adapter = new GridAdapter(this,eventsArray, Utilities.offset);
         grid.setAdapter(adapter);
+        Utilities.offset = Utilities.offset + events.size();
         grid.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override
