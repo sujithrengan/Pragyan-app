@@ -45,6 +45,7 @@ public class LoginActivity extends ActionBarActivity {
         Button signInButton = (Button) findViewById(R.id.signInButton);
         TextView registerText = (TextView) findViewById(R.id.registerText);
 
+
         final EditText emailIdEdit, passwordEdit;
         emailIdEdit = (EditText) findViewById(R.id.emailIdEdit);
         passwordEdit = (EditText) findViewById(R.id.password);
@@ -116,6 +117,7 @@ public class LoginActivity extends ActionBarActivity {
                                     editor.putString("pragyan_pass", passwordString);
                                     Utilities.pragyan_pass = passwordString;
                                     editor.apply();
+
 
                                     break;
 
