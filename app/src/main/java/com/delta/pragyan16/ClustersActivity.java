@@ -45,8 +45,9 @@ public class ClustersActivity extends Activity {
         clusters = eventsAdapter.getCluster();
         String[] clusterArray = new String[clusters.size()];
         clusterArray = clusters.toArray(clusterArray);
-        GridAdapter adapter = new GridAdapter(this,clusterArray);
+        GridAdapter adapter = new GridAdapter(this,clusterArray, Utilities.offset);
         grid.setAdapter(adapter);
+        Utilities.offset+=clusters.size();
         grid.setOnItemClickListener(
                 new AdapterView.OnItemClickListener() {
                     @Override

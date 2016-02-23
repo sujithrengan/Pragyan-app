@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -46,6 +48,17 @@ public class SplashScreen extends Activity {
         g.execute();
         if(Utilities.status == 1 && Utilities.gcm_registered == 0)
             GCMRegisterService.register(this);
+
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                Display display = getWindowManager().getDefaultDisplay();
+//                DisplayMetrics metrics = new DisplayMetrics();
+//                display.getMetrics(metrics);
+//                Utilities.screenHeight = metrics.heightPixels;
+                Utilities.screenHeight = display.getHeight();
+            }
+        });
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -100,7 +113,6 @@ public class SplashScreen extends Activity {
                                             public void run() {
                                                 Utilities.sp = getSharedPreferences("llep", 0);
                                                 Utilities.status = Utilities.sp.getInt("status", 0);
-
                                                 Utilities.pragyan_mail =Utilities.sp.getString("pragyan_mail", "");
                                                 Utilities.pid =Utilities.sp.getInt("pid", -1);
                                                 Utilities.pragyan_pass =Utilities.sp.getString("pragyan_pass", "");
