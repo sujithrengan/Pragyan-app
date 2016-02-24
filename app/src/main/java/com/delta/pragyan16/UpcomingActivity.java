@@ -2,6 +2,7 @@ package com.delta.pragyan16;
 
 
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -409,14 +410,14 @@ public class UpcomingActivity extends AppCompatActivity {
         caadapter = new ArrayAdapter<String>(
                 this, R.layout.spinnerstyle, itemscate);
         spinnercate.setAdapter(caadapter);
-        spinnercate.setSelection(catech+1);
+        spinnercate.setSelection(catech + 1);
         spinnercate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
 
             @Override
             public void onItemSelected(AdapterView<?> parent, View view,
                                        int position, long id) {
 
-                catech=position-1;
+                catech = position - 1;
                 optsel();
 
             }
@@ -472,34 +473,11 @@ public class UpcomingActivity extends AppCompatActivity {
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.pragyan_dark_grey)));
 
         parseevents();
 
 
     }
 
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            startActivity(new Intent(UpcomingActivity.this,Notify.class));
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

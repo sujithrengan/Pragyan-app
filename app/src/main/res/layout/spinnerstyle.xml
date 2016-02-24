@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:textAppearance="?android:attr/textAppearanceSmall"
     android:padding="5dp"
-    android:background="@color/pragyan_dark_grey"
+    android:background="@color/pragyan_gold"
     android:id="@+id/spinnerstyle"
     android:layout_alignBottom="@+id/describe"
     android:layout_toLeftOf="@+id/describe"

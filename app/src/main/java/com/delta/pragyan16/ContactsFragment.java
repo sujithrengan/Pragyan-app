@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 
 /**
@@ -71,7 +73,8 @@ public class ContactsFragment extends Fragment {
         fTextView no = (fTextView)v. findViewById(R.id.contactno);
         name.setText(eventInfo.contact_name);
         no.setText(eventInfo.contact_no);
-        no.setOnClickListener(new View.OnClickListener() {
+        Button call = (Button) v.findViewById(R.id.dial);
+        call.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

@@ -1,6 +1,0 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".UpcomingActivity">
-    <item android:id="@+id/action_settings" android:title="Notifications"
-        android:orderInCategory="100" app:showAsAction="ifRoom" android:icon="@android:drawable/ic_menu_sort_by_size"/>         <!--TODO change logo-->
-</menu>

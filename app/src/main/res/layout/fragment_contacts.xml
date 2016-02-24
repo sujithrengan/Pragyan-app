@@ -1,10 +1,21 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@color/pragyan_dark_grey"
     android:layout_height="match_parent"
     tools:context="com.delta.pragyan16.TimingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+    <ScrollView
+        android:layout_weight="6"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="3dp"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
     <com.delta.pragyan16.fTextView
         android:layout_width="wrap_content"
@@ -27,4 +38,18 @@
         android:layout_below="@+id/contactname"
         android:layout_centerHorizontal="true"
         android:layout_margin="5dp" />
+
     </RelativeLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/dial"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_gravity="bottom"
+        android:layout_height="0dp"
+        android:background="#3f85f4"
+        android:textColor="#ffffff"
+        android:text="Call"/>
+    </LinearLayout>
