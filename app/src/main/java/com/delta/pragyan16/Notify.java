@@ -81,6 +81,7 @@ public class Notify extends ActionBarActivity {
         listView.setAdapter(listad);
 
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.parseColor(Utilities.strcolorsEvents[notifList.size()%Utilities.strcolorsEvents.length])));
+        getSupportActionBar().setTitle("Notifications");
 
     }
 

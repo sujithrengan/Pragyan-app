@@ -5,11 +5,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -75,23 +77,36 @@ public class MainActivity extends Activity {
         frac[2].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                // Log.e("touch","touched");
-
-                //if(offset+FRAC_COUNT==Utilities.strcolors.length)off
-
                 Fractspin();
 
-                Intent i = new Intent(MainActivity.this, UpcomingActivity.class);
+                Intent i = new Intent(MainActivity.this, ScheduleActivity.class);
                 MainActivity.this.startActivity(i);
+
             }
         });
         frac[9].setOnClickListener(fraconclick);
         frac[8].setOnClickListener(fraconclick);
         frac[7].setOnClickListener(fraconclick);
         frac[6].setOnClickListener(fraconclick);
+        frac[4].setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Fractspin();
+
+                MainActivity.this.startActivity(new Intent(MainActivity.this, Notify.class));
+            }
+        });
+        ImageButton imgbutton = (ImageButton) findViewById(R.id.notifs);
+        imgbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fractspin();
+
+                MainActivity.this.startActivity(new Intent(MainActivity.this, Notify.class));
+
+            }
+        });
         frac[5].setOnClickListener(fraconclick);
-        frac[4].setOnClickListener(fraconclick);
         frac[3].setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
@@ -104,9 +119,10 @@ public class MainActivity extends Activity {
         frac[1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Fractspin();
 
-                Intent i = new Intent(MainActivity.this, ScheduleActivity.class);
+                Intent i = new Intent(MainActivity.this, UpcomingActivity.class);
                 MainActivity.this.startActivity(i);
             }
         });
@@ -126,8 +142,6 @@ public class MainActivity extends Activity {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
 
-                //Log.e("tt","tt");
-
                     Fractspin();
 
                 return false;
@@ -136,7 +150,7 @@ public class MainActivity extends Activity {
         frac[1].setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
-view.setSelected(true);
+                view.setSelected(true);
                 Log.e("tt","tt");
                     Fractspin();
 

@@ -70,13 +70,6 @@ public class DetailsFragment extends Fragment {
 //                    @Override
 //                    public void onClick(View v) {
 //
-////                        Uri gmmIntentUri = Uri.parse("geo:0,0?q="+eventInfo.locy+","+eventInfo.locx+"("+eventInfo.venue+")");
-////                        Log.i("map","geo:"+eventInfo.locy+","+eventInfo.locx);
-////                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
-////                        mapIntent.setPackage("com.google.android.apps.maps");
-////                        startActivity(mapIntent);
-//
-//
 //                        Uri gmmIntentUri = Uri.parse("google.navigation:q="+eventInfo.locy+","+eventInfo.locx+"&mode=w");
 //                        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
 //                        mapIntent.setPackage("com.google.android.apps.maps");

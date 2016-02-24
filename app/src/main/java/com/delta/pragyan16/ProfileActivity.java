@@ -160,16 +160,27 @@ public class ProfileActivity extends ActionBarActivity {
 
                                     eventsArrayAdapter = new ArrayAdapter<String>(ProfileActivity.this, R.layout.single_list_item, R.id.regevent, events) {
                                         @Override
-                                        public View getView(int position, View convertView, ViewGroup parent) {
+                                        public View getView(final int position, View convertView, ViewGroup parent) {
                                             View view = super.getView(position, convertView, parent);
                                             fTextView textview = (fTextView) view;
+
+
+                                            textview.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View view) {
+                                                    Intent in = new Intent(ProfileActivity.this, EventDetailActivity.class);
+                                                    in.putExtra("eventName", events.get(position));
+                                                    startActivity(in);
+                                                }
+                                            });
+
                                             return textview;
 
                                         }
 
 
-
                                     };
+
 
                                     lt.setVisibility(View.INVISIBLE);
                                     regEventsList.setAdapter(eventsArrayAdapter);
@@ -219,13 +230,11 @@ public class ProfileActivity extends ActionBarActivity {
                                     }
 
 
-                                    final Typeface mFont = Typeface.createFromAsset(getApplicationContext().getAssets(), "fonts/gnu.ttf");
                                     eventsArrayAdapter = new ArrayAdapter<String>(ProfileActivity.this, R.layout.single_list_item, R.id.regevent, events) {
                                         @Override
                                         public View getView(final int position, View convertView, ViewGroup parent) {
                                             View view = super.getView(position, convertView, parent);
-                                            TextView textview = (TextView) view;
-                                            textview.setTypeface(mFont);
+                                            fTextView textview = (fTextView) view;
 
 
                                             textview.setOnClickListener(new View.OnClickListener() {

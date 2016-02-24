@@ -120,7 +120,7 @@ public class RegisterActivity extends ActionBarActivity {
                 "3rd year",
                 "4th year",
                 "5th year",
-                "Others'"
+                "Others"
 
         };
         items = new String[]{
