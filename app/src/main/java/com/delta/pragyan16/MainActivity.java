@@ -101,7 +101,15 @@ public class MainActivity extends Activity {
                 MainActivity.this.startActivity(i);
             }
         });
-        frac[1].setOnClickListener(fraconclick);
+        frac[1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fractspin();
+
+                Intent i = new Intent(MainActivity.this, ScheduleActivity.class);
+                MainActivity.this.startActivity(i);
+            }
+        });
 
             txtevents=(TextView)findViewById(R.id.txtevents);
             txtschedule=(TextView)findViewById(R.id.txtschedule);

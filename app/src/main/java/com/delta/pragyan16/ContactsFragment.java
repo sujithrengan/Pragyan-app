@@ -1,6 +1,7 @@
 package com.delta.pragyan16;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -65,11 +66,21 @@ public class ContactsFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_contacts, container, false);
         EventsAdapter adapter = new EventsAdapter(getActivity());
-        EventInfo eventInfo = adapter.getEventInfo(eventName);
+        final EventInfo eventInfo = adapter.getEventInfo(eventName);
         fTextView name = (fTextView)v. findViewById(R.id.contactname);
         fTextView no = (fTextView)v. findViewById(R.id.contactno);
         name.setText(eventInfo.contact_name);
         no.setText(eventInfo.contact_no);
+        no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String uri = "tel:" + eventInfo.contact_no ;
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse(uri));
+                startActivity(intent);
+            }
+        });
         return v;
     }
 
