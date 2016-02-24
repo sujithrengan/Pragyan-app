@@ -9,5 +9,6 @@ public class EventInfo {
     String cluster, last_update_time;
     String description;
     String contact_name = "";
+    String locx,locy;
     String contact_no = "";
 }

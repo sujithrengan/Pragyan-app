@@ -259,14 +259,12 @@ public class SplashScreen extends Activity {
                         eventInfo.end_time = tempjsonObject.getString("event_end_time");
                         eventInfo.last_update_time = tempjsonObject.getString("event_last_update_time");
                         eventInfo.venue = tempjsonObject.getString("event_venue");
+                        eventInfo.locx = tempjsonObject.getString("event_loc_x");
+                        eventInfo.locy = tempjsonObject.getString("event_loc_y");
                         eventInfo.date = tempjsonObject.getString("event_date");
                         eventInfo.description = tempdescObject.getString("event_desc");
                         eventsAdapter.add_event(eventInfo);
                     }
-
-                    Log.i("Cluster", eventsAdapter.getCluster().toString());
-                    Log.i("Event", eventsAdapter.getEventnamesOfCluster("Amalgam").toString());
-                    Log.i("Event Info", eventsAdapter.getEventInfo("Inspinature").description);
 
                 } catch (JSONException e) {
                     Log.i("JSON", " Json exception in on post Execute");
