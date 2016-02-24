@@ -57,6 +57,7 @@ public class SplashScreen extends Activity {
 //                display.getMetrics(metrics);
 //                Utilities.screenHeight = metrics.heightPixels;
                 Utilities.screenHeight = display.getHeight();
+                Utilities.screenWidth = display.getWidth();
             }
         });
         new Handler().postDelayed(new Runnable() {

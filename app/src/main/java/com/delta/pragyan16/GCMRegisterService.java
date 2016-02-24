@@ -44,12 +44,13 @@ public class GCMRegisterService extends IntentService {
                     GoogleCloudMessaging.INSTANCE_ID_SCOPE, null);
             Log.i("gcm_status",token.toString());
             String serverUrl = Utilities.url_gcm;
-            //Log.e("gcm_status", "Attempt to register");
+            Log.e("gcm_status", "Attempt to register");
             StringRequest stringRequest = new StringRequest(Request.Method.POST, serverUrl, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     msg = response;
                     try {
+
                         JSONObject js = new JSONObject(response);
                         int gcm = js.getInt("status_code");
                         Utilities.gcm_registered = 1;
@@ -64,7 +65,7 @@ public class GCMRegisterService extends IntentService {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     error.printStackTrace();
-                    //Log.e("gcm_status", "Failed to register :" + error);
+                    Log.e("gcm_status", "Failed to register :" + error);
                     new Handler().post(new DisplayToast(context, "Please check your internet and Try again"));
                 }
             }){

@@ -26,13 +26,14 @@ public class Utilities {
                                                 //7. fullname
                                                 //8. gcm_registered
     public static int status = 0;
-    public static int gcm_registered = 1;
+    public static int gcm_registered = 0;
     public static String pragyan_mail;
     public static String pragyan_pass;
     public static String name;
     public static String fullname;
     public static int pid;
     public static int screenHeight;
+    public static int screenWidth;
 
     public static String url_auth = "https://api.pragyan.org/user/auth";
     public static String url_details = "https://api.pragyan.org/user/getDetails";
