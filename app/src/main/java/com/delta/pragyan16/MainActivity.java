@@ -151,8 +151,34 @@ public class MainActivity extends Activity {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 view.setSelected(true);
-                Log.e("tt","tt");
-                    Fractspin();
+                Fractspin();
+
+                return false;
+            }
+        });
+        frac[2].setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                view.setSelected(true);
+                Fractspin();
+
+                return false;
+            }
+        });
+        frac[3].setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                view.setSelected(true);
+                Fractspin();
+
+                return false;
+            }
+        });
+        frac[4].setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                view.setSelected(true);
+                Fractspin();
 
                 return false;
             }
