@@ -2,6 +2,7 @@ package org.pragyan.pragyantshirtapp;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,7 @@ public class RecycleList extends RecyclerView.Adapter<RecycleList.CustomViewHold
     int n=3,a,b,c,d;
 
     public RecycleList(Context context, String[][] present, int[][] time, int o,String[] Number) {
-
+        //  Log.i("values recyc",present[0][0]+"---------");
         this.context = context;
         this.present = present;
         this.time=time;
@@ -115,7 +116,7 @@ public class RecycleList extends RecyclerView.Adapter<RecycleList.CustomViewHold
             b =((int)((time5.getTimeInMillis() - timenow.getTimeInMillis())/60000))%60;
             if(a!=0) {
                 if(b==0)
-                customViewHolder.Time.setText("begins in " + a + " hours ");
+                    customViewHolder.Time.setText("begins in " + a + " hours ");
                 else
                     customViewHolder.Time.setText("begins in " + a + " hours " + b + " mins ");
             }
@@ -125,7 +126,7 @@ public class RecycleList extends RecyclerView.Adapter<RecycleList.CustomViewHold
         //calculates time left for end of an ongoing event
         else if (time6.before(timenow)) {
 
-            customViewHolder.Time.setText("ends in 0 hours 0 mins ");
+            customViewHolder.Time.setText("ends in 0 mins ");
         }
         else {
 
