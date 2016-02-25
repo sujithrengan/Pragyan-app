@@ -24,7 +24,7 @@ public class RecycleList extends RecyclerView.Adapter<RecycleList.CustomViewHold
 
     public final String[] Number;
 
-    Calendar timenow=new GregorianCalendar(TimeZone.getTimeZone("GMT+5:30"));
+    Calendar timenow;//=new GregorianCalendar(TimeZone.getTimeZone("GMT+5:30"));
 
 
     int n=3,a,b,c,d;
@@ -98,6 +98,7 @@ public class RecycleList extends RecyclerView.Adapter<RecycleList.CustomViewHold
     public void onBindViewHolder(CustomViewHolder customViewHolder, int i) {
         int position=i;
         String[] temp=present[position];
+        timenow=new GregorianCalendar(TimeZone.getTimeZone("GMT+5:30"));
 
         Calendar time5 = new GregorianCalendar(TimeZone.getTimeZone("GMT+5:30"));
         time5.set(timenow.get(Calendar.YEAR), timenow.get(Calendar.MONTH), time[position][0], time[position][1], time[position][2]);
@@ -115,33 +116,29 @@ public class RecycleList extends RecyclerView.Adapter<RecycleList.CustomViewHold
             a =((int)((time5.getTimeInMillis() - timenow.getTimeInMillis())/3600000));
             b =((int)((time5.getTimeInMillis() - timenow.getTimeInMillis())/60000))%60;
             if(a!=0) {
-                if(b==0)
-                    customViewHolder.Time.setText("begins in " + a + " hours ");
-                else
-                    customViewHolder.Time.setText("begins in " + a + " hours " + b + " mins ");
+                                    customViewHolder.Time.setText("begins in " + a + " hours " + b + " mins ");
             }
             else
                 customViewHolder.Time.setText("begins in " + b + " mins ");
         }
         //calculates time left for end of an ongoing event
-        else if (time6.before(timenow)) {
 
-            customViewHolder.Time.setText("ends in 0 mins ");
-        }
-        else {
+        else if(time5.before(timenow)&&time6.after(timenow)){
 
             c = ((int)((time6.getTimeInMillis() - timenow.getTimeInMillis())/3600000));
             d =((int)((time6.getTimeInMillis() - timenow.getTimeInMillis())/60000))%60;
             if(c!=0) {
-                if (d == 0)
-                    customViewHolder.Time.setText("ends in " + c + " hours ");
-                else
+
                     customViewHolder.Time.setText("ends in " + c + " hours " + d + " mins ");
             }
             else
                 customViewHolder.Time.setText("ends in " + d + " mins ");
             customViewHolder.llglow.setVisibility(View.VISIBLE);
             customViewHolder.llglow.setBackgroundColor(Color.parseColor("#00C853"));
+        }
+        else {
+
+            customViewHolder.Time.setText("ends in 0 mins ended");
         }
     }
 

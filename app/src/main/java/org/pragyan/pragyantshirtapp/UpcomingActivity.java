@@ -117,7 +117,7 @@ public class UpcomingActivity extends AppCompatActivity {
             }
         }
 
-
+        timenow = new GregorianCalendar(TimeZone.getTimeZone("GMT+5:30"));
         Calendar time3 = new GregorianCalendar(TimeZone.getTimeZone("GMT+5:30"));   //current time plus 1/2 hours depending on time limit selected in spinner list
         time3.set(Calendar.YEAR, timenow.get(Calendar.YEAR));
         time3.set(Calendar.MONTH, timenow.get(Calendar.MONTH));
@@ -311,7 +311,7 @@ public class UpcomingActivity extends AppCompatActivity {
 
 
         Intent intent = new Intent(this, UpcomingWidget.class);
-        StorePresent.storetime = prtime;
+       // StorePresent.storetime = prtime;
         intent.setAction("android.appwidget.action.APPWIDGET_UPDATE");
         int ids[] = AppWidgetManager.getInstance(getApplication()).getAppWidgetIds(new ComponentName(getApplication(), UpcomingWidget.class));
         intent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, ids);
