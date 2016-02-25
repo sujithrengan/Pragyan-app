@@ -5,10 +5,10 @@
     android:layout_height="match_parent"
     android:background="@color/pragyan_dark_grey"
     xmlns:gesture-image="http://schemas.polites.com/android"
-    tools:context="com.delta.pragyan16.ScheduleActivity">
+    tools:context="org.pragyan.pragyantshirtapp.ScheduleActivity">
 
 
-    <com.polites.android.GestureImageView
+    <org.polites.android.GestureImageView
 
         android:id="@+id/popupimage"
         android:layout_width="match_parent"
