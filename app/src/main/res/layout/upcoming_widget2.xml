@@ -3,19 +3,22 @@
     android:orientation="horizontal" android:layout_width="match_parent"
     android:weightSum="10"
     android:layout_height="match_parent"
+
     android:id="@+id/singlelistlayout"
     android:background="@color/pragyan_gold">
     <Button
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:id="@+id/Prev"
-        android:background="#9affc832"
+        android:background="@color/pragyan_dark_grey"
         android:layout_weight="1"
+        android:textColor="@color/pragyan_gold"
         android:text="&lt;" />
 
     <LinearLayout
         android:layout_width="0dp"
         android:layout_weight="8"
+        android:padding="3dp"
         android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="0dp"
@@ -69,9 +72,10 @@
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:id="@+id/Next"
-        android:background="#9affc832"
+        android:background="@color/pragyan_dark_grey"
         android:layout_weight="1"
-        android:text=">" />
+        android:text="&gt;"
+        android:textColor="@color/pragyan_gold"/>
 
 
 </LinearLayout>

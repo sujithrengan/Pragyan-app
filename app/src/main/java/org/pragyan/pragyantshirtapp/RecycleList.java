@@ -38,7 +38,6 @@ public class RecycleList extends RecyclerView.Adapter<RecycleList.CustomViewHold
 
     }
 
-
     public class CustomViewHolder extends RecyclerView.ViewHolder {
 
         public TextView Event,Time,Location,Cate,text;
