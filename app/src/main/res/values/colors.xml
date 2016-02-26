@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+        <color name="pragyan_gold"> #CDB45B</color>
+        <color name="pragyan_grey">#A9AAAE</color>
+        <color name="pragyan_dark_grey">#4C4D51</color>
+        <color name="button_green">#72BAAC</color>
+        <color name="white">#F8F8F8</color>
+
+
+</resources>
