@@ -43,7 +43,7 @@ public class SplashScreen extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-        GetEventsAPI g = new GetEventsAPI(SplashScreen.this, getApplicationContext());
+        GetEventsAPI g = new GetEventsAPI(SplashScreen.this, SplashScreen.this);
         g.execute();
         if(Utilities.status == 1 && Utilities.gcm_registered == 0)
             GCMRegisterService.register(this);
@@ -270,7 +270,7 @@ public class SplashScreen extends Activity {
                     Log.i("JSON", " Json exception in on post Execute");
                 }
             } else {
-                Toast.makeText(getApplicationContext(), "Poor connectivity. Failed to update!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Poor connectivity. Failed to update!", Toast.LENGTH_SHORT).show();
             }
         }
     }
